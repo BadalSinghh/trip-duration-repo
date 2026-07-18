@@ -190,6 +190,6 @@ cython_debug/
 .pypirc
 
 #MLFlow
-mlruns
+mlruns/
 mlflow.db
 mlartifacts/
