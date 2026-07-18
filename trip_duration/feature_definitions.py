@@ -72,6 +72,17 @@ def create_datetime_features(df):
 
 
 def feature_build(df, tag, params):
+    """
+    Perform feature engineering and return the final feature set.
+
+    Args:
+        df (pd.DataFrame): Input dataframe.
+        tag (str): train, test, or prediction.
+        params (dict): Parameters loaded from params.yaml.
+
+    Returns:
+        pd.DataFrame: Feature-engineered dataframe.
+    """
 
     datetime_feature_fix(df)
     create_dist_features(df)
@@ -81,7 +92,8 @@ def feature_build(df, tag, params):
 
     feature_names = [col for col in df.columns if col not in drop_columns]
 
-    print(f"We have {len(feature_names)} features in {tag}.")
+    if tag in ("train", "test"):
+        print(f"We have {len(feature_names)} features in {tag}.")
 
     return df[feature_names]
 
