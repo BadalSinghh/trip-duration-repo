@@ -2,16 +2,28 @@ stages:
   build_features:
     cmd: python trip_duration/build_features.py
     deps:
-    - data/raw/test.csv
-    - data/raw/train.csv
-    - trip_duration/build_features.py
-    - trip_duration/feature_definitions.py
+      - data/raw/test.csv
+      - data/raw/train.csv
+      - trip_duration/build_features.py
+      - trip_duration/feature_definitions.py
     outs:
-    - data/processed
+      - data/processed
+
   train_model:
     cmd: python trip_duration/modeling/train_model.py data/processed
+
     deps:
-    - data/processed/train.csv
-    - trip_duration/modeling/train_model.py
+      - trip_duration/modeling/train_model.py
+      - data/processed/train.csv
+
+    params:
+      - data.target
+      - split.test_size
+      - split.random_state
+      - hyperopt.max_evals
+      - mlflow.experiment_name
+      - mlflow.tuning_run_name
+      - xgboost.search_space
+
     outs:
-    - models/model.joblib
+      - models/model.joblib

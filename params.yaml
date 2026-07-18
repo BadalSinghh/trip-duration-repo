@@ -1,0 +1,38 @@
+data:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  target: trip_duration
+
+split:
+  test_size: 0.2
+  random_state: 42
+
+hyperopt:
+  max_evals: 5
+
+mlflow:
+  experiment_name: trip-duration-prediction
+  tuning_run_name: XGBRegressor
+
+features:
+  drop_columns:
+    - id
+    - pickup_datetime
+    - dropoff_datetime
+    - check_trip_duration
+    - pickup_date
+    - pickup_datetime_group
+
+xgboost:
+  search_space:
+    n_estimators:
+      - 10
+      - 15
+      - 20
+    max_depth:
+      - 6
+      - 8
+      - 10
+    learning_rate:
+      min: 0.03
+      max: 0.30

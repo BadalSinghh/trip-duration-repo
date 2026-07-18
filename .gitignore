@@ -1,5 +1,4 @@
 # Data
-/data/
 
 # Mac OS-specific storage files
 .DS_Store
@@ -189,8 +188,6 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-/data
-/models
 
 #MLFlow
 mlruns

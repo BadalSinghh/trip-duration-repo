@@ -13,12 +13,12 @@ stages:
       size: 200589097
     - path: trip_duration/build_features.py
       hash: md5
-      md5: 0e787a109981433d02b8c86a5f9db5a6
-      size: 1125
+      md5: 75ff22b149402aad4832c0135a321c58
+      size: 1127
     - path: trip_duration/feature_definitions.py
       hash: md5
-      md5: 3a91629bd2ebfd8cc18c4f2c95fd7dbe
-      size: 3160
+      md5: 199b5d10d6ee1e3cff7381cda777e16d
+      size: 2861
     outs:
     - path: data/processed
       hash: md5
@@ -34,10 +34,30 @@ stages:
       size: 236573796
     - path: trip_duration/modeling/train_model.py
       hash: md5
-      md5: d0ee2215f6f6e53940be57d47368745f
-      size: 3202
+      md5: cac418fb8f7c06416718e4bba6f18a27
+      size: 4247
+    params:
+      params.yaml:
+        data.target: trip_duration
+        hyperopt.max_evals: 5
+        mlflow.experiment_name: trip-duration-prediction
+        mlflow.tuning_run_name: XGBRegressor
+        split.random_state: 42
+        split.test_size: 0.2
+        xgboost.search_space:
+          n_estimators:
+          - 10
+          - 15
+          - 20
+          max_depth:
+          - 6
+          - 8
+          - 10
+          learning_rate:
+            min: 0.03
+            max: 0.3
     outs:
     - path: models/model.joblib
       hash: md5
-      md5: 110c0ca4a15193bc48fc94c763512fca
-      size: 330753
+      md5: bae3bfa60f4b1f156c7ec430e58af9cb
+      size: 60248
