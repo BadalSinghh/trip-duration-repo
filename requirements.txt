@@ -1,0 +1,12 @@
+ipython
+matplotlib
+mkdocs
+numpy
+pandas
+pip
+python-dotenv
+ruff
+scikit-learn
+tqdm
+typer
+-e .
