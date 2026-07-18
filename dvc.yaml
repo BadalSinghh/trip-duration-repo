@@ -1,0 +1,17 @@
+stages:
+  build_features:
+    cmd: python trip_duration/build_features.py
+    deps:
+    - data/raw/test.csv
+    - data/raw/train.csv
+    - trip_duration/build_features.py
+    - trip_duration/feature_definitions.py
+    outs:
+    - data/processed
+  train_model:
+    cmd: python trip_duration/modeling/train_model.py data/processed
+    deps:
+    - data/processed/train.csv
+    - trip_duration/modeling/train_model.py
+    outs:
+    - models/model.joblib

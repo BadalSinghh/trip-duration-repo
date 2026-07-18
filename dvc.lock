@@ -1,0 +1,43 @@
+schema: '2.0'
+stages:
+  build_features:
+    cmd: python trip_duration/build_features.py
+    deps:
+    - path: data/raw/test.csv
+      hash: md5
+      md5: 0686e4fc98617485dba9fdbabbf1c48d
+      size: 70794289
+    - path: data/raw/train.csv
+      hash: md5
+      md5: e59c291a4b1c640f1dab33b89daa22e1
+      size: 200589097
+    - path: trip_duration/build_features.py
+      hash: md5
+      md5: 0e787a109981433d02b8c86a5f9db5a6
+      size: 1125
+    - path: trip_duration/feature_definitions.py
+      hash: md5
+      md5: 3a91629bd2ebfd8cc18c4f2c95fd7dbe
+      size: 3160
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: 7b7c10a14e46ebed36b4c06716cd2f64.dir
+      size: 335293878
+      nfiles: 2
+  train_model:
+    cmd: python trip_duration/modeling/train_model.py data/processed
+    deps:
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 8f5cc06528c4a52b1dfb60ec371f803c
+      size: 236573796
+    - path: trip_duration/modeling/train_model.py
+      hash: md5
+      md5: d0ee2215f6f6e53940be57d47368745f
+      size: 3202
+    outs:
+    - path: models/model.joblib
+      hash: md5
+      md5: 110c0ca4a15193bc48fc94c763512fca
+      size: 330753
