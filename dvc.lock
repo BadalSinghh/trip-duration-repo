@@ -17,8 +17,8 @@ stages:
       size: 1127
     - path: trip_duration/feature_definitions.py
       hash: md5
-      md5: 199b5d10d6ee1e3cff7381cda777e16d
-      size: 2861
+      md5: 167b4a44aaea4e5f1007f8b25c0acee7
+      size: 3207
     outs:
     - path: data/processed
       hash: md5
